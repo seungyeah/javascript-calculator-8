@@ -20,13 +20,16 @@ class App {
 
     // 커스텀 구분자 처리
     if (input.startsWith("//")) {
-      const separated = input.replace(/\\n/g, "\n").split("\n");
-      const customSeparator = separated[0].split("//")[1];
-      if (customSeparator.length > 1) {
-        throw new Error("[ERROR] 구분자의 길이가 1이 아닙니다.");
+      const separatedInput = input.replace(/\\n/g, "\n").split("\n");
+      const customSeparator = separatedInput[0].split("//")[1].split("\\")[0];
+
+      if (customSeparator) {
+        if (customSeparator.length > 1) {
+          throw new Error("[ERROR] 구분자의 길이가 1이 아닙니다.");
+        }
+        separators.push(customSeparator);
       }
-      separators.push(customSeparator);
-      processedInput = separated[1] || "";
+      processedInput = separatedInput[1] || "";
     }
 
     if (!processedInput) {
