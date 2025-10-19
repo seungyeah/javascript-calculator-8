@@ -32,13 +32,13 @@ describe("문자열 계산기", () => {
     });
   });
 
-
+  // 구분자를 등록하지 않는다면, 콤마와 콜론을 구분자로 사용한다.
   test("구분자를 등록하지 않은 경우", async () => {
-    const inputs = ["//\\n123"];
+    const inputs = ["//\\n1,2,3"];
     mockQuestions(inputs);
 
     const logSpy = getLogSpy();
-    const outputs = ["결과 : 123"];
+    const outputs = ["결과 : 6"];
 
     const app = new App();
     await app.run();
