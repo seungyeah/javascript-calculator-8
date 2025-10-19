@@ -79,8 +79,16 @@ describe("문자열 계산기", () => {
     });
   });
 
-  test("슬래시를 구분자로 사용", async () => {
+  test("에러 케이스: 여러 슬래시를 구분자로 사용 -> 두 글자 이상의 슬래시 처리", async () => {
     const inputs = ["///\\\n1/2/3"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  test("역슬래시를 구분자로 사용", async () => {
+    const inputs = ["//\\\n1\\2\\3"];
     mockQuestions(inputs);
 
     const logSpy = getLogSpy();

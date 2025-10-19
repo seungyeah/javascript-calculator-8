@@ -21,12 +21,13 @@ class App {
     // 커스텀 구분자 처리
     if (input.startsWith("//")) {
       const separatedInput = input.replace(/\\n/g, "\n").split("\n");
-      const customSeparator = separatedInput[0].split("//")[1].split("\\")[0];
+      const customSeparator = separatedInput[0].split("//")[1];
 
-      if (customSeparator) {
-        if (customSeparator.length > 1) {
-          throw new Error("[ERROR] 구분자의 길이가 1이 아닙니다.");
-        }
+      if (customSeparator.length > 1) {
+        throw new Error("[ERROR] 구분자의 길이가 1이 아닙니다.");
+      } else if (customSeparator.length === 0) {
+        MissionUtils.Console.print("커스텀 구분자가 등록되지 않았습니다.");
+      } else {
         separators.push(customSeparator);
       }
       processedInput = separatedInput[1] || "";
