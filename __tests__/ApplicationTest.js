@@ -48,6 +48,22 @@ describe("문자열 계산기", () => {
     });
   });
 
+  test("알파벳 구분자 사용", async () => {
+    const inputs = ["//a\\n1a2a3a"];
+    mockQuestions(inputs);
+
+    const logSpy = getLogSpy();
+    const outputs = ["결과 : 6"];
+
+    const app = new App();
+    await app.run();
+
+    outputs.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
+  });
+
+
   test("예외 테스트", async () => {
     const inputs = ["-1,2,3"];
     mockQuestions(inputs);
