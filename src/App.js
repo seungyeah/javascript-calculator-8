@@ -28,6 +28,9 @@ class App {
       } else if (customSeparator.length === 0) {
         MissionUtils.Console.print("커스텀 구분자가 등록되지 않았습니다.");
       } else {
+        if ("0" <= customSeparator && customSeparator <= "9") {
+          throw new Error("[ERROR] 구분자가 숫자입니다.");
+        }
         separators.push(customSeparator);
       }
       processedInput = separatedInput[1] || "";

@@ -118,4 +118,15 @@ describe("문자열 계산기", () => {
     const app = new App();
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
+
+  test("예외 테스트: 구분자가 숫자인 경우", async () => {
+    const inputs = ["//1\\n11213"];
+    mockQuestions(inputs);
+
+    const app = new App();
+    await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+
+
 });
